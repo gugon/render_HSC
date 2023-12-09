@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block styles %}
+{{ super() }}
+{% endblock %}
+
+{% if title %}
+<title>Aplicação Web {{ title }}</title>
+{% else %}
+<title>Aplicação Web</title>
+{% endif %}
+
+{% block app_content %}
+    <h2> {{title}} </h2>
+    <div class="container" >
+
+        <div class="col-md-auto">
+            <div class="jumbotron" style="height: 50%; width: 55%">
+                <h3>Preencha os campos abaixo</h3>
+                <form>
+                    {{ form.csrf_token }}
+
+                   <div class="form-row">
+                        <div class="form-group col-md-5">
+                            {{ form.nome.label }}
+                            {{ form.nome(class='form-control',placeholder='Nome') }}
+                        </div>
+                        <div class="form-group col-md-7">
+                            {{ form.sobreNome.label }}
+                            {{ form.sobreNome(class='form-control',placeholder='Sobrenome') }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            {{ form.dataNascimento.label }}
+                            {{ form.dataNascimento(class='form-control',placeholder='xx/xx/xxxx') }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.cpf.label }}
+                            {{ form.cpf(class='form-control',placeholder='CPF') }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.genero.label }}
+                            {{ form.genero(class='form-control',placeholder=' ') }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.email.label }}
+                            {{ form.email(class='form-control',placeholder='Email válido') }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.telefone.label }}
+                            {{ form.telefone(class='form-control',placeholder='(xx)xxxxx-xxxx') }}
+                        </div>
+
+                    </div>
+                    <div>
+                        <a href="/personal_registration_menu" class="btn btn-primary" > Voltar </a>
+
+                        {{ form.submit(class='btn btn-primary') }}
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+{% endblock %}

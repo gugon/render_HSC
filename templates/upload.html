@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+{{ super() }}
+
+{% endblock %}
+
+{% if title %}
+    <title>Aplicação Web {{ title }}</title>
+{% else %}
+    <title>Aplicação Web</title>
+{% endif %}
+
+{% block app_content %}
+    <style>
+
+        .container .jumbotron, .container-fluid .jumbotron {
+
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
+
+        button, html input[type=button], input[type=reset], input[type=submit]{
+            margin-top: 10px;
+        }
+
+    </style>
+
+    <h2>Selecione as imagem(s) para o upload</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+
+
+
+        <form method="post" action="/upload/{{ idExame }}" enctype="multipart/form-data">
+            <div class="jumbotron">
+                <div>
+
+                    <p>
+                        <input type="file" name="exames[]" multiple="true" autocomplete="off" required>
+
+                    </p>
+
+                    <p>
+                        <input type="submit" name="submit" class="btn btn-success" value="Upload">
+                    </p>
+
+                </div>
+            </div>
+        </form>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+{% endblock %}

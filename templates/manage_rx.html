@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="../static/manage_rx/manage_rx.css">
+    <style>
+        .list-group-item {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% if title %}
+    <title>Aplicação Web {{ title }}</title>
+{% else %}
+    <title>Aplicação Web</title>
+{% endif %}
+
+
+{% block app_content %}
+
+
+    <h1> {{title}} </h1>
+    <div class="row-1" style="margin-top: 30px">
+        {% if data %}
+            <div class="container-2">
+            <form method="post" class="forms">
+                <div class="col-2 col-md-3">
+                    {% for d in data %}
+                        <section class="p-4">
+                            <details>
+                                <summary class="list-group-item">
+
+                                    <label>
+                                        <input type="checkbox" value="{{ d.idExame }}" name="mycheckbox">
+                                    </label>
+                                    <td>{{ d.titulo }}</td>
+
+                                </summary>
+                                <section class="ml-4">
+                                    <div class="jumbotron bg-cover" id="jumbo">
+
+                                        <label for="nome">Local: </label>
+                                        {{ d.local }} <br />
+
+                                        <label for="nome">Médico: </label>
+                                        {{ d.medicoSolicitado }} <br />
+
+                                        <label for="nome">Protocolo: </label>
+                                        {{ d.protocolo }} <br />
+
+                                        <label for="nome">Data: </label>
+                                        {{ d.dataExame }} <br />
+
+                                        <label for="nome">Informações: </label>
+                                        <div id="info">
+                                           <p> <mark class="info"> {{ d.informacoes }} </mark> </p>
+                                        </div>
+
+                                        <a href="{{ url_for('exam.list_images', name_title=d.titulo)}}"> Acessar Imagens </a>
+
+                                    </div>
+
+                                </section>
+
+                            </details>
+                        </section>
+                    {% endfor %}
+                </div>
+
+                <div class="coll1" id="alterna1">
+                    <p>Para compartilhar exame(s)</p>
+                    <p>Selecione e clique em Prosseguir</p>
+                    <input href="{{ url_for('exam.share_exams') }}" class="btn btn-primary" 
+                    id="show-or-hide" name="prosseguir" type="submit" value="Prosseguir">
+                     
+                </div>
+                
+
+            </form>
+
+        </div>
+        {% else %}
+            <div class="container-2">
+                <p><h4>  Você não possui nenhum exame cadastrado</h4></p>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    {{ super() }}
+    <script defer src="../static/manage_rx/manage_rx.js"></script>
+
+{% endblock %}

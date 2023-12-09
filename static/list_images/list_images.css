@@ -1,0 +1,13 @@
+h2 {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+embed {
+    height: 900px;
+    width: 100%;
+}
+.jumbotron {
+    padding-bottom: 30px;
+    padding-top: 0;
+}

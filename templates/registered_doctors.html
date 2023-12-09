@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block styles %}
+{{ super() }}
+    <style>
+        .jumbotron{
+            /* height: 50%; */
+            width: 530px;
+            padding-right: 30px;
+            padding-left: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% if title %}
+<title>Aplicação Web {{ title }}</title>
+{% else %}
+<title>Aplicação Web</title>
+{% endif %}
+
+{% block app_content %}
+    <h2> {{title}} </h2>
+    <div class="container" >
+
+        <div class="col-md-auto">
+            <div class="jumbotron">
+                
+                <form>
+                    {{ form.csrf_token }}
+
+                   <div class="form-row">
+                        <div class="form-group col-md-12">
+                            {{ form.nome.label }}
+                            {{ form.nome(class='form-control',placeholder='Nome Completo') }}
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            {{ form.crm.label }}
+                            {{ form.crm(class='form-control',placeholder='xxxxxx') }}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{ form.uf.label }}
+                            {{ form.uf(class='form-control',placeholder='UF') }}
+                        </div>
+                        <div class="form-group col-md-5">
+                            {{ form.especializacao.label }}
+                            {{ form.especializacao(class='form-control',placeholder='Especialidade do médico') }}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group col-md-12">
+                            {{ form.email.label }}
+                            {{ form.email(class='form-control',placeholder='Email válido') }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            {{ form.informacoes.label }}
+                            {{ form.informacoes(class='form-control',placeholder='Anotações complementares ') }}
+                        </div>
+
+                    </div>
+                    {{ form.submit(class='btn btn-primary') }}
+                </form>
+            </div>
+            <!-- <div class="jumbotron">
+                {% if list %}
+
+
+                    {% for d in list %}
+                        {{ d.nome }}
+                        {{ d.cpf }}
+                    {% endfor %}
+                {% else %}
+                    <div class="container-2">
+                        <p><h4>  Você não possui nenhum exame cadastrado</h4></p>
+                    </div>
+                {% endif %}
+            </div> -->
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+{% endblock %}

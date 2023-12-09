@@ -1,0 +1,54 @@
+{#{% extends 'base.html' %}#}
+{##}
+{##}
+{#{% block head %}#}
+{#    {{ super() }}#}
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3">#}
+{#    <style>#}
+{#        .titulo {#}
+{#            cursor: pointer;#}
+{#        }#}
+{#    </style>#}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{#{% block app_content %}#}
+{#<!-- <h1> {{title}} </h1> -->#}
+{#<!-- <div class="container mt-3">#}
+{#    <h3>senha gerada: {{ random_password }}</h3>#}
+{#    <h3>senha codificada: {{ encoded_password }}</h3>#}
+{#</div> -->#}
+{#<h1>Formulário de E-mail</h1>#}
+{#    {% with messages = get_flashed_messages() %}#}
+{#        {% if messages %}#}
+{#            <ul>#}
+{#                {% for message in messages %}#}
+{#                    <li style="color: {% if 'danger' in message %}red{% else %}green{% endif %};">{{ message }}</li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        {% endif %}#}
+{#    {% endwith %}#}
+{#    <form method="POST" action="{{ url_for('email.send_email') }}">#}
+{#        {{ form.hidden_tag() }}#}
+{#        <label for="destinatario">Destinatário:</label>#}
+{#        {{ form.destinatario(class="form-control", placeholder="Digite o e-mail do destinatário") }}#}
+{#        <br>#}
+{#        <label for="assunto">Assunto:</label>#}
+{#        {{ form.assunto(class="form-control", placeholder="Digite o assunto do e-mail") }}#}
+{#        <br>#}
+{#        <label for="corpo">Corpo do E-mail:</label>#}
+{#        {{ form.corpo(class="form-control", placeholder="Digite o corpo do e-mail") }}#}
+{#        <br>#}
+{#        {{ form.enviar(class="btn btn-primary") }}#}
+{#    </form>#}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{#{% block scripts %}#}
+{#{{ super() }}#}
+{##}
+{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#    #}
+{#{% endblock %}#}

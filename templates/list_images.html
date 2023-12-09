@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-v4-rtl/4.6.0-3/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../static/list_images/minified/bootstrap-gallery.min.css" />
+    <link href="{{ url_for('static', filename='list_images/list_images.css') }}" rel="stylesheet" type="text/css" >
+{% endblock %}
+
+{% if title %}
+    <title>Aplicação Web {{ title }}</title>
+{% else %}
+    <title>Aplicação Web</title>
+{% endif %}
+
+
+{% block content %}
+
+
+    <div class="container">
+
+        <h1> Nome do Exame:  {{ tituloPasta }} </h1>
+
+        <div>
+            <script type="text/javascript">
+                google_ad_client = "ca-pub-2783044520727903";
+                /* jQuery_demo */
+                google_ad_slot = "2780937993";
+                google_ad_width = 728;
+                google_ad_height = 45;
+            </script>
+            <script type="text/javascript"
+                    src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
+
+        <div class="jumbotron">
+            <div class="container">
+                <div class="col-sm-4">
+                <h2>Imagens do Exame</h2>
+                    {% for d in data %}
+                        <div class="row">
+                            <a href="{{ url_for('exam.get_img', id=d.id_imagem)}}" class="thumbnail">
+                                {% if d.mimetype != "application/pdf" %}
+                                    <img src="{{ url_for('exam.get_img', id=d.id_imagem) }}"/>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-sm-8">
+                <h2>Laudo</h2>
+                    {% for d in data %}
+                        {% if d.mimetype == "application/pdf" %}
+                            <embed src="{{ url_for('exam.get_img', id=d.id_imagem) }}"/>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="../static/list_images/minified/bootstrap-gallery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            bootstrapGallery('a.custom-selector');
+        });
+    </script>
+    <script type="text/javascript">
+    let _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        let ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        let s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<script>
+    try {
+    fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+        { method: 'HEAD', mode: 'no-cors' })).then(function() {
+        return true;
+    }).catch(function() {
+        let carbonScript = document.createElement("script");
+        carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+        carbonScript.id = "_carbonads_js";
+        document.getElementById("carbon-block").appendChild(carbonScript);
+    });
+    } catch (error) {
+        console.log(error);
+    }
+</script>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+
+{% endblock %}

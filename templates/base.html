@@ -1,0 +1,50 @@
+{% extends "bootstrap/base.html" %}
+      
+{% if title %}
+<title>Aplicação Web {{ title }}</title>
+{% else %}
+<title>Aplicação Web</title>
+{% endif %}
+
+
+{% block styles %}
+{{ super() }}
+    <link href="{{ url_for('static', filename='images/hand_red.svg') }}" rel=icon />
+
+
+{% endblock %}
+{% block html_attribs %} lang="pt_BR"{% endblock %}
+
+{% block navbar %}
+
+    {% if menu == 0 %}
+        {{nav.menu_navbar.render()}}
+    {% elif menu == 1%}
+        {{nav.menu_doctor.render()}}
+    {% endif %}
+
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+
+
+    {# Conteúdo das páginas ficarão aqui #}
+    {% block app_content %} {% endblock %}
+</div>
+{% endblock %}
+    
+    {% block script %}
+    {{ super() }}
+    {% endblock %}

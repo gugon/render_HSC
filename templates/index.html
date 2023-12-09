@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block styles %}
+  {{ super() }}
+
+{% endblock %}
+
+{% block app_content %}
+{% block jumbotron %}
+<div class="jumbotron">
+
+    {% if menu == 0 %}
+        {% if paciente is none %}
+            <h2>Bem vindo paciente ao Histórico de Saúde Compartilhada</h2>
+            <h4>Siga para o cadastro e preencha as informações necessárias</h4>
+        {% else %}
+            <h2>Bem vindo {{ paciente }} ao Histórico de Saúde Compartilhada</h2>
+        {% endif %}
+    {% elif menu == 1%}
+        <h2>Bem vindo {{ name_doctor }} ao Histórico de Saúde Compartilhada</h2>
+    {% endif %}
+
+
+
+</div>
+{% endblock jumbotron %}
+{% endblock %}
